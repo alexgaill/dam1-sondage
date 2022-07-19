@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<h1 class="text-center">Un super site de sondage</h1>
+
+	<table class="table table-striped table-hover">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>sondage</th>
+				<th>options</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for sondage in sondages %}
+				<tr>
+					<th>{{sondage.id}}</th>
+					<td>{{sondage.titre}}</td>
+					<td>
+						<a href="{{ path('single_sondage', {id: sondage.id}) }}">
+							<button class="btn btn-info">Voir le sondage</button>
+						</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="3" class="text-center">Pas de sondage</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="3" class="text-center"><a href="{{ path('add_sondage') }}"><button class="btn btn-info">Ajouter sondage</button></a></td>
+			</tr>
+		</tfoot>
+	</table>
+{% endblock %}

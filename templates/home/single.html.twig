@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Questions</th>
+                <th>Reponses</th>
+                <th>Score</th>
+                <th>Votez</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for question in sondage.questions %}
+                <tr>
+                    <td colspan="1">{{ question.titre }}</td>
+                    <td colspan="3">
+                        {% for reponse in question.reponses %}
+                            <tr>
+                                <td>{{ reponse.titre }}</td>
+                                <td>{{ reponse.score }}</td>
+                                <td> <a href="{{ path('upVote', {id: reponse.id}) }}"><button class="btn btn-success">Votez</button></a></td>
+                            </tr>
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

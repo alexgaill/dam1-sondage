@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<h1 class="text-center">Un super site de sondage</h1>
+
+	<table class="table table-striped table-hover">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>titre</th>
+                <th>score</th>
+				<th>Question</th>
+				<th>options</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for reponse in reponses %}
+				<tr>
+					<th>{{reponse.id}}</th>
+					<td>{{reponse.titre}}</td>
+					<td>{{reponse.score}}</td>
+					<td>{{reponse.question.titre}}</td>
+					<td>
+						<a href="">
+							<button class="btn btn-warning">Modifier</button>
+						</a>
+						<a href="{{ path('delete_reponse', { id: reponse.id }) }}">
+							<button class="btn btn-danger">Supprimer</button>
+						</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="5" class="text-center">Pas de reponse</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="5" class="text-center">{{ form(form) }}</td>
+			</tr>
+		</tfoot>
+	</table>
+{% endblock %}
